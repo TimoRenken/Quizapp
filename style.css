@@ -1,8 +1,8 @@
 body{
-    background-color: #007AFF !important;
+    background-image: url("images/stars.jpg");
+    background-size: contain;
 }
 .container{
-    background-color: #007AFF !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,4 +17,8 @@ body{
 }
 .quiz_card{
     width: 30rem;
+}
+.quiz_answer_card:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.05);
 }
