@@ -90,8 +90,8 @@ function init(){
 
 function showQuestion(){
 if(currentQuestion >= questions.length){
-
-
+    document.getElementById('endScreen').style = '';
+    document.getElementById('question_body').style = 'display: none';
 }else{
     let question = questions[currentQuestion];
     document.getElementById('current_question'). innerHTML = currentQuestion+1;
