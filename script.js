@@ -89,10 +89,12 @@ function init(){
 }
 
 function showQuestion(){
-if(currentQuestion >= questions.length){
+    if(currentQuestion >= questions.length){
     document.getElementById('endScreen').style = '';
     document.getElementById('question_body').style = 'display: none';
-}else{
+    document.getElementById('showArrayLength1').innerHTML = questions.length;
+    document.getElementById('endImage').src="images/fireworks.jpg";
+    }else{
     let question = questions[currentQuestion];
     document.getElementById('current_question'). innerHTML = currentQuestion+1;
     document.getElementById('questionText').innerHTML = question['question'];
@@ -100,8 +102,8 @@ if(currentQuestion >= questions.length){
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-}
-}
+    }
+    }
 
 function answer(selection){ // gibt answer_x je nach Antwort aus. 
 let rightAnswer = questions[currentQuestion]['right_answer']; // Zeigt die Zahl der richtigen Antwort.  "1-4"

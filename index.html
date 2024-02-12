@@ -20,13 +20,17 @@
   <div class="container">
 
     <div class="card quiz_card">
-      <img src="images/millennium-falcon.jpg" class="card-img-top" alt="pencil" />
-     
-      <div class="card-body" id="endScreen" style="display: none;">Quiz beendet</div>
-     
-      <div class="card-body" id="question_body" >
+      <img src="images/millennium-falcon.jpg" class="card-img-top" id="endImage" />
+
+      <div class="card-body" id="endScreen" style="display: none;">
+        <div class="text_center">Quiz beendet</div>
+        <div class="text_center">Du hast <b></b> von <b id="showArrayLength1"></b> Fragen richtig beanwortet.</div>
+      </div>
+
+
+      <div class="card-body" id="question_body">
         <h5 class="card-title" id="questionText"></h5>
-        
+
         <div class="card quiz_answer_card mb-2">
           <div class="card-body" id="answer_1" onclick="answer('answer_1')">
             Antwort
@@ -55,7 +59,7 @@
           <span>Frage <b id="current_question"></b> von <b id="showArrayLength"></b></span>
           <button class="btn btn-primary" disabled id="next_question" onclick="nextQuestion()">Nächste Frage</button>
         </div>
-      
+
       </div>
     </div>
   </div>
