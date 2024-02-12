@@ -32,3 +32,7 @@ body{
 .text_center{
     text-align: center;
 }
+.final_headline{
+    font-size: 32px;
+    margin-bottom: 24px;
+}

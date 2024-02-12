@@ -82,6 +82,7 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let rightQuestions = 0;
 
 function init(){
     document.getElementById('showArrayLength').innerHTML = questions.length;
@@ -93,6 +94,7 @@ function showQuestion(){
     document.getElementById('endScreen').style = '';
     document.getElementById('question_body').style = 'display: none';
     document.getElementById('showArrayLength1').innerHTML = questions.length;
+    document.getElementById('rightAnswers').innerHTML = rightQuestions;
     document.getElementById('endImage').src="images/fireworks.jpg";
     }else{
     let question = questions[currentQuestion];
@@ -112,6 +114,7 @@ let idOfRightAnswer = `answer_${rightAnswer}` // Erstellt eine ID mit der richti
 
 if(selectedQuestionNumber == rightAnswer){
     document.getElementById(selection).parentNode.classList.add('bg-success');
+    rightQuestions++;
 }else{
     document.getElementById(selection).parentNode.classList.add('bg-danger'); // zeigt, das die Antwort falsch ist. 
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success'); // zeigt die richtige Antwort
