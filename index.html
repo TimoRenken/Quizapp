@@ -21,12 +21,17 @@
 
     <div class="card quiz_card">
       <img src="images/millennium-falcon.jpg" class="card-img-top" id="endImage" />
+      <div class="progress border_radius">
+        <div class="progress-bar" id="progress_bar" role="progressbar" style="width: 0%;">10%</div>
+      </div>
 
       <div class="card-body" id="endScreen" style="display: none;">
         <div class="text_center final_headline">Quiz beendet</div>
         <div class="text_center">Du hast <b id="rightAnswers"></b> von <b id="showArrayLength1"></b> Fragen richtig beanwortet.</div>
+        <div class="button_center">
+          <button class="btn btn-primary" id="restart_btn" onclick="restartGame()">Erneut spielen</button>
+        </div>
       </div>
-
 
       <div class="card-body" id="question_body">
         <h5 class="card-title" id="questionText"></h5>

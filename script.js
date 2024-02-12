@@ -91,13 +91,21 @@ function init(){
 
 function showQuestion(){
     if(currentQuestion >= questions.length){
+    // show Endscreen
     document.getElementById('endScreen').style = '';
     document.getElementById('question_body').style = 'display: none';
     document.getElementById('showArrayLength1').innerHTML = questions.length;
     document.getElementById('rightAnswers').innerHTML = rightQuestions;
     document.getElementById('endImage').src="images/fireworks.jpg";
-    }else{
+    }else{ // show Question
     let question = questions[currentQuestion];
+
+    let percent = (currentQuestion +1) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress_bar'). innerHTML = `${percent} %`;
+    document.getElementById('progress_bar').style = `width: ${percent}%`; 
+    console.log('Fortschritt:', percent);
+
     document.getElementById('current_question'). innerHTML = currentQuestion+1;
     document.getElementById('questionText').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -110,16 +118,17 @@ function showQuestion(){
 function answer(selection){ // gibt answer_x je nach Antwort aus. 
 let rightAnswer = questions[currentQuestion]['right_answer']; // Zeigt die Zahl der richtigen Antwort.  "1-4"
 let selectedQuestionNumber = selection.slice(-1); // kürzt z.B. answer_1 bis zur letzten Stelle. Dadurch bleibt nur die Zahl übrig, die mit der Zahl der richtigen Antwort verglichen werden kann. 
-let idOfRightAnswer = `answer_${rightAnswer}` // Erstellt eine ID mit der richtigen Endnummer. "answer_1" "answer_2" ...
+let idOfRightAnswer = `answer_${rightAnswer}` // generate right ID
 
-if(selectedQuestionNumber == rightAnswer){
+if(selectedQuestionNumber == rightAnswer){ 
     document.getElementById(selection).parentNode.classList.add('bg-success');
     rightQuestions++;
-}else{
-    document.getElementById(selection).parentNode.classList.add('bg-danger'); // zeigt, das die Antwort falsch ist. 
-    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success'); // zeigt die richtige Antwort
+}else{ 
+
+    document.getElementById(selection).parentNode.classList.add('bg-danger'); // shows wrong answer
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success'); // shows correct answer
 }
-    document.getElementById('next_question').disabled = false; // Macht den Button "Nächste Frage" anklickbar
+    document.getElementById('next_question').disabled = false; // makes button usable
 }
 
 function nextQuestion(){
@@ -138,4 +147,13 @@ function resetAnswerButtons(){
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function restartGame(){
+    document.getElementById('endImage').src="images/millennium-falcon.jpg";
+    document.getElementById('endScreen').style = 'display: none';
+    document.getElementById('question_body').style = '';
+    currentQuestion = 0;
+    rightQuestions = 0;
+    init();
 }

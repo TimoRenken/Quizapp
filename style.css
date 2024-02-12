@@ -11,7 +11,6 @@ body{
 .questen_footer{
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid rgba(0,0,0,0.4);
     padding-top: 12px;
     align-items: center;
 }
@@ -35,4 +34,12 @@ body{
 .final_headline{
     font-size: 32px;
     margin-bottom: 24px;
+}
+.border_radius{
+    border-radius: 0 !important;
+}
+.button_center{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
 }
