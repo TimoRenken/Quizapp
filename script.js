@@ -83,6 +83,8 @@ let questions = [
 
 let currentQuestion = 0;
 let rightQuestions = 0;
+let AUDIO_SUCCES = new Audio('sounds/correct.mp3')
+let AUDIO_FAIL = new Audio('sounds/incorrect.mp3')
 
 function init(){
     document.getElementById('showArrayLength').innerHTML = questions.length;
@@ -90,45 +92,62 @@ function init(){
 }
 
 function showQuestion(){
-    if(currentQuestion >= questions.length){
-    // show Endscreen
-    document.getElementById('endScreen').style = '';
-    document.getElementById('question_body').style = 'display: none';
-    document.getElementById('showArrayLength1').innerHTML = questions.length;
-    document.getElementById('rightAnswers').innerHTML = rightQuestions;
-    document.getElementById('endImage').src="images/fireworks.jpg";
-    }else{ // show Question
+    if(gameIsOver()){ // if true
+        showEndScreen();
+    }else{ // if false
+        updateProgressBar();
+        updateToNextQuestion();
+    }
+}
+
+function gameIsOver(){
+   return currentQuestion >= questions.length; // returns true or false
+}
+
+function showEndScreen(){
+        document.getElementById('endScreen').style = '';
+        document.getElementById('question_body').style = 'display: none';
+        document.getElementById('showArrayLength1').innerHTML = questions.length;
+        document.getElementById('rightAnswers').innerHTML = rightQuestions;
+        document.getElementById('endImage').src="images/fireworks.jpg";
+} 
+
+function updateToNextQuestion(){
     let question = questions[currentQuestion];
-
-    let percent = (currentQuestion +1) / questions.length;
-    percent = Math.round(percent * 100);
-    document.getElementById('progress_bar'). innerHTML = `${percent} %`;
-    document.getElementById('progress_bar').style = `width: ${percent}%`; 
-    console.log('Fortschritt:', percent);
-
     document.getElementById('current_question'). innerHTML = currentQuestion+1;
     document.getElementById('questionText').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-    }
-    }
+}
+
+function updateProgressBar(){
+    let percent = (currentQuestion +1) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress_bar'). innerHTML = `${percent} %`;
+    document.getElementById('progress_bar').style = `width: ${percent}%`; 
+}
 
 function answer(selection){ // gibt answer_x je nach Antwort aus. 
 let rightAnswer = questions[currentQuestion]['right_answer']; // Zeigt die Zahl der richtigen Antwort.  "1-4"
 let selectedQuestionNumber = selection.slice(-1); // kürzt z.B. answer_1 bis zur letzten Stelle. Dadurch bleibt nur die Zahl übrig, die mit der Zahl der richtigen Antwort verglichen werden kann. 
 let idOfRightAnswer = `answer_${rightAnswer}` // generate right ID
 
-if(selectedQuestionNumber == rightAnswer){ 
+if(rightAnswerSelected(selectedQuestionNumber, rightAnswer)){ 
     document.getElementById(selection).parentNode.classList.add('bg-success');
+    AUDIO_SUCCES.play(); 
     rightQuestions++;
 }else{ 
-
     document.getElementById(selection).parentNode.classList.add('bg-danger'); // shows wrong answer
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success'); // shows correct answer
+    AUDIO_FAIL.play();
 }
     document.getElementById('next_question').disabled = false; // makes button usable
+}
+
+function rightAnswerSelected(selectedQuestionNumber, rightAnswer){
+    return selectedQuestionNumber == rightAnswer;
 }
 
 function nextQuestion(){
