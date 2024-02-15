@@ -78,14 +78,14 @@ let questions = [
         "answer_3": "Qui-Gon Jinn",
         "answer_4": "Boba Fett",
         "right_answer": 2
-    },//----------------------- new----------
+    },
     {
         "question": "Was ist mit Anakin Skywalker während des Kampfes mit Graf Dooku passiert?",
         "answer_1": "Er verlor sein linkes Bein",
         "answer_2": "Er verlor seinen rechten Arm",
         "answer_3": "Er verlor sein rechtes Bein",
         "answer_4": "Er hat verloren",
-        "right_answer": 1
+        "right_answer": 2
     },
     {
         "question": "Was hat Luke Skywalker in seinem Kampf mit Darth Vader verloren?",
